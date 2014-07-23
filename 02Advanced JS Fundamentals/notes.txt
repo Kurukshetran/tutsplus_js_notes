@@ -1,0 +1,216 @@
+**************************************************************
+*********** Advanced Javascript Fundamentals *****************
+**************************************************************
+
+**********************************
+************ Math ****************
+**********************************
+
+Refer to documentation in 01 directory
+
+**********************************
+************ Date ****************
+**********************************
+
+Refer to documentation in 02 directory
+
+**********************************
+****** Advanced Functions ********
+**********************************
+
+Function Declaration (Statement):
+function doSomething() {
+	alert("Hello Function Declaration");
+}
+
+Function Expression:
+var doSomethingElse = function() {
+	alert("Hello Function Expression");
+};
+
+Technically... each of the previous examples is perfectly fine to use
+either syntax - there is a difference behind the scenes
+
+Hoisting: Function Declarations are loaded before any of the code executes
+
+----------------
+
+Executing a function brings 2 special values
+	1) this - refers to the object the function is attached to
+	2) arguments - object that acts like an array filled with the arguments passed to the function
+
+arguments - Refer to documentation in 03 directory
+
+----------------
+
+Refer to documentation in 03 directory
+
+**********************************
+************ Arrays **************
+**********************************
+
+Refer to documentation in 04 directory
+
+**********************************
+**** Creating Custom Objects *****
+**********************************
+
+Refer to documentation in 05 directory
+
+**********************************
+****** Functions as Objects ******
+**********************************
+
+Refer to documentation in 06 directory
+
+**********************************
+******** Keyboard Events *********
+**********************************
+
+3 Main Keyboard Events:
+
+1) keydown - when pressing down on a key
+2) keyup - when the pressed key is released
+3) keypress - does not occur for MODIFIER keys (shift, caps lock, ctrl)
+			- information generally used for user input, fires for all keys except
+				modifier keys
+
+Can set keyboard events on any element
+	ex. Add hot keys by adding keyboard events to the document object
+
+	function(e) {
+		e.charCode // Standard Space Browsers
+		e.keyCode // Legacy IE Browsers
+
+		// A 65
+		// B 66
+		// Z 90
+
+		// a 97
+		// z 122
+
+		// 0 48
+		// 9 57
+	}
+
+Refer to documentation in 07 directory
+
+**********************************
+******** Scripting Forms *********
+**********************************
+
+The entire reason JavaScript was created was to script forms..
+Basically, it took so long to submit a form and it's possible
+that something was entered incorrectly and the user wouldn't find
+out about it until 30 seconds later... then fix the issue, and resubmit
+the form... Not the best...
+
+So JavaScript validates the form before it is sent to the server
+
+Refer to documentation in 08 directory
+
+**********************************
+******** XMLHttpRequest **********
+**********************************
+
+AJAX - Asynchronous JavaScript And XML
+
+Using JS to make a request to the server, and then do something with what 
+we receive from the server
+
+The standard data format was XML but a more lightweight data protocol is
+used now called JSON
+
+**********************************
+************* JSON ***************
+**********************************
+
+JSON
+JavaScript Object Notation
+
+Subset of the Language - Alternative Data Object Notation instead of XML
+
+Lightweight - Human and Machine Readable
+
+Problem with XML:
+	1) Verbose (beginning and closing tags) - lot of extra bytes
+	2) Processing - the document can be processed in JavaScript but it's time consuming
+
+JS
+var rss = {
+	channel : {
+		title : "RSS Sample",
+		description : "A sample RSS Feed",
+		link : "http://www.somewebsite.com",
+		copyright : "Copyright 2012 Me",
+		lastBuildDate : "Tue, 19 Feb 2012",
+		pubDate : "Tue, 19 Feb 2012",
+		items : [
+			{
+				title : "An Item in Title",
+				description : "An item's description",
+				link : "http://www.somewebsite.com",
+				pubDate : "Tue, 19 Feb 2012"
+			}
+		]
+	}
+};
+
+rss.channel.title 
+
+JSON - everything gets turned into strings
+
+{
+	"channel" : {
+		"title" : "RSS Sample",
+		"description" : "A sample RSS Feed",
+		"link" : "http://www.somewebsite.com",
+		"copyright" : "Copyright 2012 Me",
+		"lastBuildDate" : "Tue, 19 Feb 2012",
+		"pubDate" : "Tue, 19 Feb 2012",
+		"items" : [
+			{
+				"title" : "An Item in Title",
+				"description" : "An item's description",
+				"link" : "http://www.somewebsite.com",
+				"pubDate" : "Tue, 19 Feb 2012"
+			}
+		]
+	}
+}
+
+**********************************
+********* Local Storage **********
+**********************************
+
+Not supported by IE7
+NOT COOKIES! Totally different thing - that is only available through JS
+
+Designed to hold name (key) and values
+
+**********************************
+********* Error Handling *********
+**********************************
+
+YOUR CODE IS GOING TO FAIL! Because your local environment is never
+identical to a user's environment
+
+IT IS YOUR JOB TO MAKE SURE THE USER UNDERSTANDS THE ERROR
+
+Revolves around TRY and CATCH
+
+So the idea is to try code... and if it fails, we will catch the error
+that is thrown
+
+try { // try this code
+	
+} catch( error ) { if above code fails, the error is thrown and is collected by
+// catch as a single parameter - see above
+	
+} finally { // this code will run regardless if an error occurs or not
+	
+}
+
+Generally... if your code involves data that is collected from the user, you usually
+want to anticipate an error that will occur
+

@@ -1,0 +1,239 @@
+var num1 = 1,
+    num2,
+    num3;
+
+num2 = ++num1;
+
+console.log("num1: ", num1);  // logs 2
+console.log("num2: ", num2);  // logs 2
+
+num3 = num1++;
+
+console.log("num1: ", num1);  // logs 3
+console.log("num3: ", num3);  // logs 2
+
+/////////////////////////////////////
+
+console.log( typeof 10 ); // "number"
+console.log( typeof "test" ); // "string"
+console.log( typeof new Date() ); // "object"
+
+/////////////////////////////////////
+
+var num = 10;
+
+num += 5; // same as num = num + 5
+alert(num); // 15
+
+num -= 3; // same as num = num - 3
+alert(num); // 12
+
+num *= 2; // same as num = num * 2
+alert(num); // 24
+
+num /= 6; // same as num = num / 6
+alert(num); // 4
+
+num %= 3; // same as num = num % 3
+alert(num); // 1
+
+///////////////////////////////////////
+False Values:
+
+false
+null
+undefined
+"" (empty string)
+0
+NaN (what returns when attempting to add/subtract/ a number and a non-number together)
+
+///////////////////////////////////////
+
+// Evaluate if function exists - and if it does... execute it
+funcName && funcName();
+
+///////////////////////////////////////
+
+Switch Statement:
+
+var order_size = "medium";
+
+switch (order_size) {
+	case "small":
+		alert("small");
+	break;
+	case "medium":
+		alert("medium");
+	break;
+	case "large":
+		alert("large");
+	break;
+	case "extra large":
+		alert("extra large");
+	break;
+	default:
+		alert("something else?");
+}
+
+///////////////////////////////////////
+
+Ternary Operator
+
+var temp = 18,
+	msg;
+
+msg = (temp < 10) ? "Today was cold" : "Today was warm";
+
+alert(msg);
+
+////////////////////////////////////////
+
+Variation on For Loop
+var i = 0;
+
+for ( ; names[i] ; ) {
+	alert(name[i]);
+	i++;
+}
+////////
+While Loop:
+	Should generally be used while something is true...
+////////
+For-In Loop
+
+var person = {
+	name: "Jules Verne",
+	job: "Author",
+	year_of_birth: 1828,
+	year_of_death: 1905
+},
+	prop;
+
+for (prop in person) {
+	alert("His " + prop + " is " + person[prop]);
+}
+//////////////////////////////////////////
+
+
+(required, <optional>)
+String Methods:
+length // returns number of characters
+
+indexOf // returns beginning index of designated string
+(string, <beginning index number>)
+
+slice // returns a substring
+(starting index, <ending index>)
+
+substr // returns substring
+(starting index, length of substring)
+
+substring // returns substring
+(starting index, potentially lower index)
+
+split // splits string into an array
+(delimiter string)
+
+toLowerCase(); // returns string to all lower case
+toUpperCase(); // returns string to all upper case
+
+//////////////////////////////////////////
+
+Number Methods:
+
+toExponential(); // returns string of number converted to exponential form
+(number of decimal places to use)
+
+toPrecision(); // returns string of how many digits should represent your number
+(number of digits)
+
+toFixed(); // returns string of rounds number to number of decimals designated
+(number of decimal places to use)
+
+parseInt(); // for a string containing only numbers - it returns a number
+
+parseFloat(); // same as parseInt only can take in decimals and exponential forms
+
+////////////////////////////////////////
+
+Date Methods:
+
+GET - specific pieces of a date
+
+Method 				Return Value
+getDate.............day of month, 1-31
+getDay..............day of week, 0-6
+getFullYear.........year
+getHours............hour, 0-23
+getMilliseconds.....milliseconds, 0-999
+getMinutes..........minutes, 0-59
+getMonth............month, 0-11
+getSeconds..........seconds, 0-59
+getTime.............milliseconds since January 1, 1970
+getTimezoneOffset...difference between GMT and local time in minutes
+
+SET - set a specific piece of a time object
+
+setDate
+setFullYear
+setHours
+setMilliseconds
+setMinute
+setMonth
+setSeconds
+setTime
+
+Date.parse - converts to number based on Unix Epoch
+
+////////////////////////////////////////
+
+Array Methods:
+
+join; // converts array to a string
+(delimiter to add)
+
+pop // removes and returns the last value of an array
+
+shift // removes and returns the first value of an array
+
+push // adds value to the end of an array // returns number of elements in array
+
+unshift // adds value to the beginning of an array // returns number of elements in // array
+
+reverse // returns array with items reversed
+
+slice // returns a smaller array based on index parameters
+
+sort // returns sorted array - default alphabetical
+
+////////////////////////////////////////
+
+Math Functions:
+
+min // returns lowest number of parameters passed
+
+max // returns highest number of parameters passed
+
+random // returns number between 0 and 1 - used in conjunction with a multiplier
+
+round // returns standard rules for rounding
+
+ceil // always rounds up
+
+floor // always rounds down
+
+pow // returns x to the yth power
+(x, y)
+
+////////////////////////////////////////
+
+Object Methods:
+
+hasOwnProperty - determines if property is part of actual object
+// returns true if it is
+// returns false if property doesn't exist, or is part of prototype
+
+////////////////////////////////////////
+
+Testing JavaScript
+

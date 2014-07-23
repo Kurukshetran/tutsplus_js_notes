@@ -1,0 +1,289 @@
+**************************************************************
+************** JavaScript Fundamentals 101 *******************
+**************************************************************
+
+*** For Loop
+	for (var i = 0, len = names.length; i < len; i = i + 1) {
+	
+	}
+
+*** While
+	while (true) {
+		change condition
+	}
+
+*** Do While
+	do {
+	
+	} while ();
+
+	// Guaranteed to execute once!
+
+
+*********************************
+The window Object and More Scope
+*********************************
+
+window is the GLOBAL object - everthing falls under the 'window' object
+
+it is however implied sooo you don't need to constantly declare window
+
+If you plan to use code that is brought in by other frameworks, plugins, etc..
+	to avoid the issue of code duplication which could break your code or their code
+
+	wrap your code inside of a self-invoking function - 
+	we also wrap our function with () because... we DONT want to declare the function with a name
+	(function(){
+	
+	}());
+
+	That allows any code inside this function to not be globally accessible
+
+(function(){
+    var foo = 'hello, window';
+    
+    var bar = function() {
+        var foo = 'hello, function';
+        alert(window.foo);
+    };
+}());
+
+Drawback - with the inner 'foo' variable declared... one can no longer access the outer foo variable
+	-just keep your code DRY
+
+confirm(); ask user a question in alert box - returns TRUE or FALSE
+
+location - get and set the current url
+
+
+****************************************
+The document Object and Finding Elements
+****************************************
+
+document is actually Document Object Model (DOM)
+	This is where we spend most of our time writing JavaScript
+
+Browsers load HTML content - put scripts at bottom of page
+	content appears to load before JS loads
+	allows browser to load document so it can be accessed
+
+Everything in HTML is referred to as a Node
+	Node List
+	querySelector(); - finds elements by CSS selector
+
+Refer to Directory for further notes
+
+********************************
+Creating Elements and Attributes
+********************************
+
+Refer to documentation in 02 directory
+
+********************************
+**** Modifying Element Style ***
+********************************
+
+Refer to documentation in 03 directory
+
+The style object directly references the style attribute within the HTML
+	Trying to get value of CSS property that is declared in an external style sheet - you CANT get that value...
+
+
+********************************
+***** Timers and Animation *****
+********************************
+
+** Unlocking animation is by manipulating style
+** Other key is to perform manipulations gradually - delay
+** setTimeout() - executes another function on delay
+
+***************************************
+************* SETTIMEOUT **************
+
+// ***** Create a Continuous Loop ******** //
+
+var speed = 1000;
+var doSomething = function() {
+	console.log("doSomething() executed");
+
+	setTimeout(doSomething, speed); // executes the function again recursively creating a loop
+};
+
+//Simply pass the function object to set timeout with a 1000 ms delay
+setTimeout(doSomething, speed);
+
+// ****************************** //
+
+// ***** Create a Loop for "x" Amount of Times ****** //
+
+var speed = 500,
+	x = 0,
+	doSomething = function() {
+		console.log("doSomething() executed " + (x + 1) + " times");
+		x = x + 1;
+
+		if (x < 10) {
+			setTimeout(doSomething, speed);
+		}
+	};
+
+setTimeout(doSomething, speed);
+
+// ******************************** //
+
+clearTimeout() - takes a single variable that designates what timeout to stop
+
+var timer = setTimeout(doSomething, speed); // returns an ID to the timer variable
+clearTimeout(timer);
+
+***************************************
+************* SETINTERVAL *************
+
+** More elegant solution instead of looping a timeout
+** setTimeout is actually used to defer the execution of a function 1 time
+
+setInterval() - function to execute another function multiple times with a delay time
+
+clearInterval();
+
+// ********** Defined loop with set and clearInterval ******* //
+
+var speed = 500;
+	x = 0,
+	doSomething = function() {
+		console.log("doSomething() executed " + (x + 1) + " times");
+		x = x + 1;
+
+		if (x > 9) {
+			clearInterval(timer);
+		}
+	};
+
+var timer = setInterval(doSomething, speed);
+
+// ********************************************************** //
+
+Refer to documentation in 04 directory
+
+
+********************************
+********* Event Basics *********
+********************************
+
+We still need to put the <script> just before the final <body> tag. This is because JS will try to find the referenced object to listen on before it is created. In turn
+returning an Uncaught Type Error
+
+If the <script> needs to be in the header - we used to use a function on window
+
+window.onload = function () {
+	// Code goes here...
+};
+
+However... we do not not use this method anymore because it's just extra overhead
+on a page when we can just place the script tag at the bottom
+
+Refer to documentation in 05 directory
+
+********************************
+*** The Standard Event Model ***
+********************************
+
+Refer to documentation in 06 directory
+
+Capturing: The event actually originates at the DOM level so... goes through
+	This example:
+		HTML
+		BODY
+		BUTTON - that we clicked - this is the TARGET
+
+Bubbling: The opposite of capturing
+	Bubbles up from the element that was clicked and goes to HTML
+	This example:
+		BUTTON
+		BODY
+		HTML
+
+	So if we had events set up for the body and HTML, those events would trigger
+
+W3C incorporated both models by 3 phases
+	1) Capture
+	2) Event Hitting Target
+	3) Bubbling
+
+	IE 8 and below only support BUBBLING
+
+addEventListener takes 3 arguments:
+1) Type of event (click, keyup, mouseover)
+2) Event to be performed, usually in the form of a function
+3) Whether or not Capturing should be used (true, false)
+
+buttons[i].addEventListener("click", buttonClick, false);
+
+Click Event, buttonClick function performed, bubbling will be used (not capturing)
+
+This allows you to add multiple event listeners - see code example
+
+/////////////////////////////////////
+
+When an event occurs, there is some info that can be retrieved.
+This "info" gets passed to the function we specified when calling addEventListener()
+
+buttons[i].addEventListener("click", function(event) {}, false); --"info" is the event parameter which is an object that has multiple properties that can be used... within the event handler
+
+********************************
+*** The Legacy IE Event Model **
+********************************
+
+Refer to documentation in 07 directory
+
+********************************
+* Cross-Browser Event Handling *
+********************************
+
+Now that we have 2 Different Event Models
+	1) Standards Event Model
+	2) Legacy IE Event Model
+
+Combine into a single codebase - jQuery it's done for you...
+
+Adding Listeners:
+	Use feature detection - basically find out if object exists, then use it
+	Test for Standards Compliance First!
+
+	if(Standards available) {
+	} else if (Legacy IE available) {
+	} else {DOM Level 0 code}
+
+Refer to documentation in 08 directory
+
+********************************
+******* Event Delegation *******
+********************************
+
+Special way of handling events that takes advantage of how browsers 
+capability of using bubbling
+
+Event Bubbling: Starts at the target and bubbles back out to the HTML tag
+
+The idea of event delegation is to set a handler at the DOCUMENT level because
+all events eventually bubble up to that level, then...
+	1) Examine the info
+	2) Determine the target
+	3) Do something based upon what that target is
+
+eventUtility.addEvent(document, "click", function(e) {
+	alert("You clicked the document");
+});
+
+So from here we will need to get the target of the event object
+
+target.tagName returns the tag as an Upper Case String --- <a></a> => "A"
+
+Gains from Event Delegation:
+1) Each handler takes up memory - this way there is only one handler
+
+Downside: The code gets more complex
+
+Instead of using innerHTML... which could definitely change... especially if you're
+creating a dynamic website. Use data- attributes - then JS can just
+getAttribute();

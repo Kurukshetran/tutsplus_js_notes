@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+	<style>
+		#box {
+			background-color: blue;
+			height: 100px;
+			left: 50px;
+			position: absolute;
+			top: 50px;
+			width: 100px;
+			z-index: -1;
+		}
+		.normal {
+			background-color: gray;
+			color: black;
+		}
+		.changed {
+			background-color: black;
+			color: white;
+		}
+		.changed-2 {
+			background-color: blue;
+			color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<h1>Hello, Events</h1>
+	<p>La de da</p>
+
+	<a data-body-class="normal" href="#">Change to Normal</a>
+	<a data-body-class="changed" href="#">Change to Changed</a>
+	<button data-body-class="changed-2">Change to Changed-2</button>
+
+	<a href="http://www.google.com">Go To Google</a>
+
+	<!-- <div id="box"></div> -->
+	<script src="eventUtility.js"></script>
+	<script src="script.js"></script>
+</body>
+
+</html>
