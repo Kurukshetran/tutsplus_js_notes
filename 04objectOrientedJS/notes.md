@@ -327,3 +327,7 @@ for (var prop in person) {
 //2nd Way to Enumerate
 Object.keys(person);
 ```
+
+## First Exercise
+
+### Exercise 1: Building a Simple Toolbar
