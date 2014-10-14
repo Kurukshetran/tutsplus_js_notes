@@ -5,20 +5,20 @@
 ### Primitives and Objects
 
 Primitive Values - Primitive Types
-	Strings
-	Numbers
-	Booleans
-	Undefined
-	Null
+* Strings
+* Numbers
+* Booleans
+* Undefined
+* Null
 
 Objects - Reference Types
-	Objects
-	Date
-	RegExp
-	Array
-	Function
-	DOM API
-	Anything brought in from a Third Party
+* Objects
+* Date
+* RegExp
+* Array
+* Function
+* DOM API
+* Anything brought in from a Third Party
 
 Example:
 
