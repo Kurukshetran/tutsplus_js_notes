@@ -186,3 +186,144 @@ var obj = {
 ```
 
 BIND DOES EXIST IN IE8 - Can be easily shimmed so it can be used though...
+
+### Data and Accessor Properties
+
+Types of Descriptors:
+* Data Descriptors - Allows to create property that is read only
+* Accessor Descriptors - Create property that is dynamic - Get and Set values of properties
+
+Both descriptors are mutually exclusive meaning a property can't have both data and accessor descriptors.
+
+```javascript
+var createPerson = function(firstName, lastName) {
+	var person = {};
+
+	// Defines a Property
+	// 3 Arguments
+	// 1st) Object to define property on
+	// 2nd) The Property we want to define as a string value
+	// 3rd) Descriptor Object - Contains all options for particular property 
+	Object.defineProperty(person, "firstName", {
+		//Data descriptors
+		value : firstName,
+		writable : false  //DEFAULT so it can be ommited
+	});
+
+	Object.defineProperty(person, "lastName", {
+		//Data descriptors
+		value : lastName,
+		writable : false
+	});
+
+	return person;	
+};
+
+var person = createPerson("Andy", "Cousineau");
+```
+
+Defining multiple properties in a single function
+
+```javascript
+var createPerson = function(firstName, lastName) {
+	var person = {};
+
+	Object.defineProperties(person, {
+		firstName : {
+			value : firstName,
+			writable : true
+		},
+		lastName : {
+			value : lastName,
+			writable : true
+		},
+		fullName : {
+			get : function() {
+				return this.firstName + " " + this.lastName;
+			},
+			set : function(value) {
+				this.firstName = value;
+				this.lastName = value;
+			}
+		}
+	});
+
+	return person;
+};
+
+var person = createPerson("Andy", "Cousineau");
+```
+
+There are also 2 options we can apply to any property:
+* Configurable - Determines if property can be redefined after initial value is set
+* Enumerable - Determines if property can be enumerated - "for in" loop
+
+Configurable Example:
+
+```javascript
+var createPerson = function(firstName, lastName) {
+	var person = {};
+
+	Object.defineProperties(person, {
+		firstName : {
+			value : firstName
+		},
+		lastName : {
+			value : lastName
+		},
+		fullName : {
+			get : function() {
+				return this.firstName + " " + this.lastName;
+			},
+			configurable : true		//otherwise throws an error "TypeError: Cannot redefine property: fullName"
+		}
+	});
+
+	return person;
+};
+
+var person = createPerson("Andy", "Cousineau");
+
+Object.defineProperty(person, "fullName", {
+	get : function() {
+		return this.lastName + ", " + this.firstName;
+	}
+});
+```
+
+Enumberable Example: Very Common to set it to TRUE
+
+```javascript
+var createPerson = function(firstName, lastName) {
+	var person = {};
+
+	Object.defineProperties(person, {
+		firstName : {
+			value : firstName,
+			enumerable : true
+		},
+		lastName : {
+			value : lastName,
+			enumerable : true
+		},
+		fullName : {
+			get : function() {
+				return this.firstName + " " + this.lastName;
+			},
+			enumerable : true
+		}
+	});
+
+	return person;
+};
+
+var person = createPerson("Andy", "Cousineau");
+
+//1 Way to Enumerate over an Object
+for (var prop in person) {
+
+}
+
+//2nd Way to Enumerate
+Object.keys(person);
+```
