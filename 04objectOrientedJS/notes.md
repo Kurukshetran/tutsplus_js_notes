@@ -27,9 +27,9 @@ Example:
 ```
 
 Behind the scenes...
-	1) JS creates a String Object for string
-	2) Uses length property
-	3) Destroys that String Object - the literal remains
+1) JS creates a String Object for string
+2) Uses length property
+3) Destroys that String Object - the literal remains
 
 The only thing that changes the "typeof" is the "new" keyword which 
 actually means it's using the String Object Constructor
