@@ -1,10 +1,8 @@
-**************************************************************
-************** Object Oriented JavaScript ********************
-**************************************************************
+# Object Oriented JavaScript
 
-**********************************
-***** Primitives and Objects *****
-**********************************
+## Introduction to Object-Oriented JavaScript
+
+### Primitives and Objects
 
 Primitive Values - Primitive Types
 	Strings
@@ -24,7 +22,9 @@ Objects - Reference Types
 
 Example:
 
+```javascript
 "hello".length
+```
 
 Behind the scenes...
 	1) JS creates a String Object for string
@@ -37,6 +37,8 @@ actually means it's using the String Object Constructor
 Same with Number, Boolean
 
 CAN'T ASSIGN PROPERTIES OR METHODS TO PRIMITIVE VALUES:
+
+```javascript
 var num = 10;
 num.property = "hello";
 num.property // returns undefined....
@@ -44,8 +46,7 @@ num.property // returns undefined....
 num = new Number(10);
 num.property = "hello";
 num.property; // returns "hello"
+```
 
-**********************************************
-*** Creating Objects and Factory Functions ***
-**********************************************
+### Creating Objects and Factory Functions
 
